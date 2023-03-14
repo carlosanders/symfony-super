@@ -12,17 +12,11 @@ class ProcessoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('numero', DateType::class, [
-                'required' => $options['require_due_date'],
-            ])
-            ->add('descricao', DateType::class, [
-                'required' => $options['require_due_date'],
-            ])
-            ->add('titulo', DateType::class, [
-                'required' => $options['require_due_date'],
-            ])
+            ->add('numero', null, ['required'=> true])
+            ->add('descricao')
+            ->add('titulo')
             ->add('classificacao')
-            ->add('observacao')
+            ->add('observacao', null, ['required'=> true])
         ;
     }
 
