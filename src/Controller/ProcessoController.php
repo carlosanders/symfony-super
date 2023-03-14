@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Processo;
 use App\Form\ProcessoType;
 use App\Repository\ProcessoRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,13 +17,14 @@ class ProcessoController extends AbstractController
     #[Route('/', name: 'app_processo_index', methods: ['GET'])]
     public function index(ProcessoRepository $processoRepository): Response
     {
+        
         return $this->render('processo/index.html.twig', [
             'processos' => $processoRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_processo_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProcessoRepository $processoRepository): Response
+    public function new(Request $request, ProcessoRepository $processoRepository, LoggerInterface $logger): Response
     {
         $processo = new Processo();
         $form = $this->createForm(ProcessoType::class, $processo);
@@ -31,6 +33,7 @@ class ProcessoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $processoRepository->save($processo, true);
 
+            $logger->info('Sucesso ao cadastrar');
             return $this->redirectToRoute('app_processo_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -7,15 +7,24 @@ when@dev:
         handlers:
             main:
                 type: stream
-                path: "%kernel.logs_dir%/%kernel.environment%.log"
-                level: debug
-                channels: ["!event"]
+                path: "%kernel.logs_dir%/error.log"
+                level: error
+                #channels: ["!event"]
+                        # main:
+            #     type: stream
+            #     path: "%kernel.logs_dir%/%error%.log"
+            #     level: error
+            sucesso:
+                type: stream
+                path: "%kernel.logs_dir%/sucesso.log"
+                level: info
+                channels: ["app"]
 
-            syslog_handler:
-                type: syslog
-                # log error-level messages and higher
-                # cat /var/log/syslog | grep ErrorException
-                level: error    
+            # syslog_handler:
+            #     type: syslog
+            #     # log error-level messages and higher
+            #     # cat /var/log/syslog | grep ErrorException
+            #     level: error    
             # uncomment to get logging in your browser
             # you may have to allow bigger header sizes in your Web server configuration
             #firephp:
