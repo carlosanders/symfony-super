@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TipoDocumento index{% endblock %}
+
+{% block body %}
+    <h1>TipoDocumento index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipo_documento in tipo_documentos %}
+            <tr>
+                <td>{{ tipo_documento.id }}</td>
+                <td>{{ tipo_documento.nome }}</td>
+                <td>{{ tipo_documento.descricao }}</td>
+                <td>
+                    <a class="btn btn-light" href="{{ path('app_tipo_documento_show', {'id': tipo_documento.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_tipo_documento_edit', {'id': tipo_documento.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_tipo_documento_new') }}">Create new</a>
+{% endblock %}

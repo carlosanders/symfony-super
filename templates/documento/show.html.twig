@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}Project{% endblock %}
+ 
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Show Project</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="#"> 
+                    View All Documento
+                </a>
+            </div>
+            <div class="card-body">
+                <b class="text-muted">ID:</b>
+                <p>{{ documento.id }}</p>
+                <b class="text-muted">Description:</b>
+                <p>{{ documento.descricao }}</p>
+                
+                <b class="text-muted">Número:</b>
+                <p>{{ documento.numero }}</p>
+
+                <b class="text-muted">Autor:</b>
+                <p>{{ documento.autor }}</p>
+                
+                <b class="text-muted">Observação:</b>
+                <p>{{ documento.observacao }}</p>
+
+                <b class="text-muted">Tipo Documento:</b>
+                <p>ID: {{ documento.tipoDocumento.id }}</p>
+                <p>Nome: {{ documento.tipoDocumento.nome }}</p>
+                <p>Descrição: {{ documento.tipoDocumento.descricao }}</p>
+
+                {# <b class="text-muted">Date Created:</b>
+                <p>{{ project.numero ? project.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                <b class="text-muted">Date Updated:</b>
+                <p>{{ project.autor ? project.updatedAt|date('Y-m-d H:i:s') : '' }}</p> #}
+
+                {% dump documento %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

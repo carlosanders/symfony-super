@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DocumentoController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+{# {% dump documentos %} #}
+{# <ul>
+{% for d in documentos %}
+    <li>Nome: <strong>{{ d.autor|e }}</strong> - Tipo documento nome: <strong>{{ d.tipoDocumento.nome|default('')  }}</strong> </li>
+{% endfor %}
+</ul> #}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Autor</th>
+      <th scope="col">Observação</th>
+      <th scope="col">Tipo Documento</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for d in documentos %}
+    <tr>
+      <th scope="row">{{ d.id|e }}</th>
+      <td>{{ d.descricao|e }}</td>
+      <td>{{ d.autor|e }}</td>
+      <td>{{ d.observacao|e }}</td>
+      <td>{{ d.tipoDocumento.nome|default('-')  }}</td>
+      <td>
+        <a href='edit/{{ d.id }}' class="btn btn-primary" role="button" data-bs-toggle="button">Editar</a>
+        <a href='delete/{{ d.id }}' class="btn btn-danger" role="button" data-bs-toggle="button">Deletar</a>        
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}
